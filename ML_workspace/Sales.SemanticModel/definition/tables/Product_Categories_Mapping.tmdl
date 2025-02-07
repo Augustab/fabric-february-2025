@@ -1,0 +1,32 @@
+table Product_Categories_Mapping
+	lineageTag: 3c6e4256-6429-4bad-a60d-e44a112d1450
+
+	column original_product_category
+		dataType: string
+		lineageTag: 443bacc7-b2ea-4d98-86be-918b196d0e88
+		summarizeBy: none
+		sourceColumn: original_product_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column higher_order_category
+		dataType: string
+		lineageTag: 586a49d3-876d-416a-a76e-e644c2b9a875
+		summarizeBy: none
+		sourceColumn: higher_order_category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_Categories_Mapping = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("ejej5uqkx7vubp7yzloowv6jmi-by6lzumvpgnu7n43wclmnh6v3e.datawarehouse.fabric.microsoft.com", "Gold"),
+				    dbo_Product_Categories_Mapping = Source{[Schema="dbo",Item="Product_Categories_Mapping"]}[Data]
+				in
+				    dbo_Product_Categories_Mapping
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
