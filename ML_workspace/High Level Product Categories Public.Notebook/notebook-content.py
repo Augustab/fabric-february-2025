@@ -233,9 +233,9 @@ display(non_empty_prompts_df)
 # Create the OpenAIChatCompletion object
 chat_completion = (
     OpenAIChatCompletion()
-    # .setSubscriptionKey(key)
+    .setSubscriptionKey(key)
     .setDeploymentName(deployment_name)
-    # .setCustomServiceName(service_name)
+    .setCustomServiceName(service_name)
     .setMessagesCol("messages")
     .setErrorCol("error")
     .setOutputCol("chat_completions")
